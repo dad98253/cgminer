@@ -44,3 +44,8 @@ lib/warn-on-use.h
 mkinstalldirs
 
 *.swp
+/.autotools
+/.cproject
+/.project
+/cgminer.c_latest
+/cgminer.c_save
