@@ -1,12 +1,18 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-JANSSON_INCLUDES= -I$(top_srcdir)/compat/jansson-2.5/src
+JANSSON_CPPFLAGS= -I$(top_builddir)/compat/jansson-2.9/src -I$(top_srcdir)/compat/jansson-2.9/src
 
 if WANT_USBUTILS
-USBUTILS_INCLUDES = -I$(top_srcdir)/compat/libusb-1.0/libusb
+USBUTILS_CPPFLAGS = `pkg-config libusb-1.0 --libs --cflags`
 else
-USBUTILS_INCLUDES =
+USBUTILS_CPPFLAGS =
+endif
+
+if STATIC_CURL
+LIBCURL_CPPFLAGS = -DCURL_STATICLIB
+else
+LIBCURL_CPPFLAGS =
 endif
 
 EXTRA_DIST	= example.conf m4/gnulib-cache.m4 linux-usb-cgminer \
